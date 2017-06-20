@@ -55,6 +55,6 @@
 
 ;; activate whitespace-mode to view all whitespace characters
 (global-set-key (kbd "C-c w") 'whitespace-mode)
-(windmove-default-keybindings)
+;; (windmove-default-keybindings)
 
 (provide 'setup-general)
