@@ -28,26 +28,8 @@
 ;; function-args
 ;; (require 'function-args)
 ;; (fa-config-default)
-;; (define-key c-mode-map  [(tab)] 'company-complete)
-;; (define-key c++-mode-map  [(tab)] 'company-complete)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("1ae64d0f3ad5d63319d1f5416ffba351143357609e37efeb98606504890f004d" default)))
- '(package-selected-packages
-   (quote
-    (eww-lnum zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
- '(scroll-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;;(define-key c-mode-map  [(tab)] 'company-complete)
+;;(define-key c++-mode-map  [(tab)] 'company-complete)
 (define-key helm-map (kbd "C-r") 'helm-minibuffer-history)
 
 ;;-------------------------------------------------------------
@@ -81,11 +63,12 @@
 
 ;;-------------------------------------------------------------
 ;; Appearance
-(load-theme 'gotham t)
+(require 'sublime-themes)
+(load-theme 'fogus t)
 (menu-bar-mode -1)
-(toggle-scroll-bar -1)
+(scroll-bar-mode -1)
 (tool-bar-mode -1)
-(set-default-font "Noto Mono-11")
+(set-default-font "Inconsolata-13")
 
 ;;-------------------------------------------------------------
 ;; search related
@@ -162,6 +145,8 @@ Version 2015-04-09"
 (global-set-key (kbd "C-c C-<right>") 'windmove-right)
 (global-set-key (kbd "C-c C-<up>")    'windmove-up)
 (global-set-key (kbd "C-c C-<down>")  'windmove-down)
+;; enable clipboard in emacs
+(setq x-select-enable-clipboard t)
 
 ;;-------------------------------------------------------------
 ;; ggtags
@@ -188,7 +173,7 @@ Version 2015-04-09"
 (setq company-backends (delete 'company-semantic company-backends))
 (define-key c-mode-map  [(tab)] 'company-complete)
 (define-key c++-mode-map  [(tab)] 'company-complete)
-(add-to-list 'company-backends 'company-c-headers)
+;; (add-to-list 'company-backends 'company-c-headers)
 
 ;; revert / reload file without confirmation
 (defun revert-buffer-no-confirm ()
@@ -205,6 +190,7 @@ Version 2015-04-09"
 
 ;;-------------------------------------------------------------
 ;; multiterm related
+(require 'multi-term)
 (when (require 'multi-term nil t)
   (global-set-key (kbd "<f5>") 'multi-term)
   (global-set-key (kbd "<C-next>") 'multi-term-next)
@@ -367,11 +353,16 @@ Version 2015-04-09"
 (global-set-key (kbd "M-+") 'shift-number-up)
 (global-set-key (kbd "M-_") 'shift-number-down)
 
-
 ;;-------------------------------------------------------------
 ;; autosave
 (setq auto-save-file-name-transforms
-      `((".*" "~/.emacs-saves/" t)))
+      `((".*" "~/.emacs.saves/" t)))
+(setq backup-directory-alist `(("." . "~/.emacs.saves/")))
+(setq backup-by-copying t)
+(setq delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)
 
 ;;-------------------------------------------------------------
 ;; eclim
@@ -401,3 +392,48 @@ Version 2015-04-09"
 ;(setq company-emacs-eclim-ignore-case t)
 ;
 ;(define-key eclim-mode-map (kbd "C-c C-c") 'eclim-problems-correct)
+
+
+;;-------------------------------------------------------------
+(defun crontab-e ()
+  (interactive)
+  (with-editor-async-shell-command "crontab -e"))
+
+
+;;-------------------------------------------------------------
+(require 'solaire-mode)
+
+;; brighten buffers (that represent real files)
+(add-hook 'after-change-major-mode-hook #'turn-on-solaire-mode)
+;; To enable solaire-mode unconditionally for certain modes:
+(add-hook 'ediff-prepare-buffer-hook #'solaire-mode)
+
+;; ...if you use auto-revert-mode:
+(add-hook 'after-revert-hook #'turn-on-solaire-mode)
+
+;; highlight the minibuffer when it is activated:
+(add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
+
+;; if the bright and dark background colors are the wrong way around, use this
+;; to switch the backgrounds of the `default` and `solaire-default-face` faces.
+;; This should be used *after* you load the active theme!
+;;
+;; NOTE: This is necessary for themes in the doom-themes package!
+(solaire-mode-swap-bg)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("e9460a84d876da407d9e6accf9ceba453e2f86f8b86076f37c08ad155de8223c" "a4c9e536d86666d4494ef7f43c84807162d9bd29b0dfd39bdf2c3d845dcc7b2e" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "9b59e147dbbde5e638ea1cde5ec0a358d5f269d27bd2b893a0947c4a867e14c1" default)))
+ '(package-selected-packages
+   (quote
+    (function-args sublime-themes zygospore ws-butler volatile-highlights use-package undo-tree stickyfunc-enhance solaire-mode smartparens shift-number rainbow-delimiters multi-term markdown-toc markdown-preview-mode markdown-preview-eww markdown-mode+ magit iedit ido-vertical-mode ido-ubiquitous highlight-tail highlight-stages helm-swoop helm-projectile helm-gtags gradle-mode gotham-theme git-blamed git ggtags find-file-in-repository eww-lnum ecb dtrt-indent dracula-theme doom-themes dired+ company-emacs-eclim color-theme clues-theme clean-aindent-mode cdb ccc backup-walker atom-one-dark-theme atom-dark-theme anzu ac-emacs-eclim))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil)))))
