@@ -68,7 +68,9 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
-(set-default-font "Inconsolata-13")
+(set-default-font "Inconsolata")
+(set-face-attribute 'mode-line nil  :height 100)
+(set-face-attribute 'mode-line-inactive nil :height 100)
 
 ;;-------------------------------------------------------------
 ;; search related
@@ -366,6 +368,27 @@ Version 2015-04-09"
 
 ;;-------------------------------------------------------------
 ;; eclim
+(require 'eclim)
+(add-hook 'java-mode-hook 'eclim-mode)
+(add-hook 'java-mode-hook 'company-mode)
+(require 'eclimd)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("e9460a84d876da407d9e6accf9ceba453e2f86f8b86076f37c08ad155de8223c" "a4c9e536d86666d4494ef7f43c84807162d9bd29b0dfd39bdf2c3d845dcc7b2e" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "9b59e147dbbde5e638ea1cde5ec0a358d5f269d27bd2b893a0947c4a867e14c1" default)))
+ '(eclim-eclipse-dirs (quote ("/home/ashish/tools/eclipse/java-oxygen/eclipse")))
+ '(eclim-executable "/home/ashish/.p2/pool/plugins/org.eclim_2.7.2/bin/eclim")
+ '(package-selected-packages
+   (quote
+    (jdee kotlin-mode eclim function-args sublime-themes zygospore ws-butler volatile-highlights use-package undo-tree stickyfunc-enhance solaire-mode smartparens shift-number rainbow-delimiters multi-term markdown-toc markdown-preview-mode markdown-preview-eww markdown-mode+ magit iedit ido-vertical-mode ido-ubiquitous highlight-tail highlight-stages helm-swoop helm-projectile helm-gtags gradle-mode gotham-theme git-blamed git ggtags find-file-in-repository eww-lnum ecb dtrt-indent dracula-theme doom-themes dired+ company-emacs-eclim color-theme clues-theme clean-aindent-mode cdb ccc backup-walker atom-one-dark-theme atom-dark-theme anzu ac-emacs-eclim))))
+
+(require 'company-emacs-eclim)
+(company-emacs-eclim-setup)
+
 ;(require 'eclim)
 ;(setq eclimd-autostart t)
 ;(global-eclim-mode)
@@ -420,17 +443,7 @@ Version 2015-04-09"
 ;;
 ;; NOTE: This is necessary for themes in the doom-themes package!
 (solaire-mode-swap-bg)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("e9460a84d876da407d9e6accf9ceba453e2f86f8b86076f37c08ad155de8223c" "a4c9e536d86666d4494ef7f43c84807162d9bd29b0dfd39bdf2c3d845dcc7b2e" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "9b59e147dbbde5e638ea1cde5ec0a358d5f269d27bd2b893a0947c4a867e14c1" default)))
- '(package-selected-packages
-   (quote
-    (function-args sublime-themes zygospore ws-butler volatile-highlights use-package undo-tree stickyfunc-enhance solaire-mode smartparens shift-number rainbow-delimiters multi-term markdown-toc markdown-preview-mode markdown-preview-eww markdown-mode+ magit iedit ido-vertical-mode ido-ubiquitous highlight-tail highlight-stages helm-swoop helm-projectile helm-gtags gradle-mode gotham-theme git-blamed git ggtags find-file-in-repository eww-lnum ecb dtrt-indent dracula-theme doom-themes dired+ company-emacs-eclim color-theme clues-theme clean-aindent-mode cdb ccc backup-walker atom-one-dark-theme atom-dark-theme anzu ac-emacs-eclim))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
