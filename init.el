@@ -68,9 +68,21 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
-(set-default-font "Inconsolata")
+(set-default-font "Noto Mono-11")
 (set-face-attribute 'mode-line nil  :height 100)
 (set-face-attribute 'mode-line-inactive nil :height 100)
+
+(defun on-frame-open (frame)
+  (if (not (display-graphic-p frame))
+    (set-face-background 'default "unspecified-bg" frame)))
+(on-frame-open (selected-frame))
+(add-hook 'after-make-frame-functions 'on-frame-open)
+
+(defun on-after-init ()
+  (unless (display-graphic-p (selected-frame))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
+
+(add-hook 'window-setup-hook 'on-after-init)
 
 ;;-------------------------------------------------------------
 ;; search related
@@ -149,6 +161,14 @@ Version 2015-04-09"
 (global-set-key (kbd "C-c C-<down>")  'windmove-down)
 ;; enable clipboard in emacs
 (setq x-select-enable-clipboard t)
+
+;; transparency
+(defun transparency (value)
+   "Sets the transparency of the frame window. 0=transparent/100=opaque"
+   (interactive "nTransparency Value 0 - 100 opaque:")
+   (set-frame-parameter (selected-frame) 'alpha value))
+(transparency 95)
+
 
 ;;-------------------------------------------------------------
 ;; ggtags
