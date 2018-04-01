@@ -2,16 +2,17 @@
 
 UID=$(id -g $USER)
 FILE="/tmp/emacs$UID/server"
-if [ -f $FILE ]; then
+
+if [ -S $FILE ]; then
 else
 	FILE="/tmp/$USER/emacs$UID/server"
 fi
 
 if [ -z "$INSIDE_EMACS" ]; then
 	if [ -z "$@" ]; then
-		TERM=xterm-256color emacsclient -nw -s "$FILE" -e "(transparency 94)"
+		TERM=xterm-256color emacsclient -nw -s "$FILE" -e "(transparency 92)"
 	else
-		TERM=xterm-256color emacsclient -nw -s "$FILE" -e "(progn (find-file \"$@\") (transparency 95))"
+		TERM=xterm-256color emacsclient -nw -s "$FILE" -e "(progn (find-file \"$@\") (transparency 92))"
 	fi
 else
 	emacsclient -n -s /tmp/emacs1000/server "$@"

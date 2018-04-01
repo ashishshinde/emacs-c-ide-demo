@@ -85,6 +85,13 @@
 (add-hook 'window-setup-hook 'on-after-init)
 
 ;;-------------------------------------------------------------
+;; Terminal mode
+;;-------------------------------------------------------------;; Appearance
+(define-advice server-eval-and-print (:filter-args (args) no-print)
+  (list (car args) nil))
+
+
+;;-------------------------------------------------------------
 ;; search related
 (define-key isearch-mode-map (kbd "C-d")
   'xah-search-current-word)
