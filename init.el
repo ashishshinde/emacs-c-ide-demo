@@ -151,11 +151,11 @@ Version 2015-04-09"
 ;; Find file in repository
 (require 'find-file-in-repository)
 (require 'ido)
-(require 'ido-ubiquitous)
-(require 'ido-vertical-mode)
+;; (require 'ido-ubiquitous)
+;; (require 'ido-vertical-mode)
 (global-set-key (kbd "C-x f") 'find-file-in-repository)
-(ido-ubiquitous-mode 1)
-(ido-vertical-mode)
+;; (ido-ubiquitous-mode 1)
+;; (ido-vertical-mode)
 (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
 
 
@@ -393,62 +393,6 @@ Version 2015-04-09"
       kept-old-versions 2
       version-control t)
 
-;;-------------------------------------------------------------
-;; eclim
-(require 'eclim)
-(add-hook 'java-mode-hook 'eclim-mode)
-(add-hook 'java-mode-hook 'company-mode)
-(require 'eclimd)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("e9460a84d876da407d9e6accf9ceba453e2f86f8b86076f37c08ad155de8223c" "a4c9e536d86666d4494ef7f43c84807162d9bd29b0dfd39bdf2c3d845dcc7b2e" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "9b59e147dbbde5e638ea1cde5ec0a358d5f269d27bd2b893a0947c4a867e14c1" default)))
- '(eclim-eclipse-dirs (quote ("/home/ashish/tools/eclipse/java-oxygen/eclipse")))
- '(eclim-executable "/home/ashish/.p2/pool/plugins/org.eclim_2.7.2/bin/eclim")
- '(package-selected-packages
-   (quote
-    (jdee kotlin-mode eclim function-args sublime-themes zygospore ws-butler volatile-highlights use-package undo-tree stickyfunc-enhance solaire-mode smartparens shift-number rainbow-delimiters multi-term markdown-toc markdown-preview-mode markdown-preview-eww markdown-mode+ magit iedit ido-vertical-mode ido-ubiquitous highlight-tail highlight-stages helm-swoop helm-projectile helm-gtags gradle-mode gotham-theme git-blamed git ggtags find-file-in-repository eww-lnum ecb dtrt-indent dracula-theme doom-themes dired+ company-emacs-eclim color-theme clues-theme clean-aindent-mode cdb ccc backup-walker atom-one-dark-theme atom-dark-theme anzu ac-emacs-eclim))))
-
-(require 'company-emacs-eclim)
-(company-emacs-eclim-setup)
-
-;(require 'eclim)
-;(setq eclimd-autostart t)
-;(global-eclim-mode)
-
-;(custom-set-variables
-;  '(eclim-eclipse-dirs '("~/tools/eclipse"))
-;  '(eclim-executable "~/tools/eclipse/eclim"))
-;
-;(require 'eclim)
-;(setq eclimd-autostart t)
-;(global-eclim-mode)
-
-;(custom-set-variables
-;  '(eclim-eclipse-dirs '("~/tools/eclipse"))
-;  '(eclim-executable "~/tools/eclipse/eclim"))
-;(setq help-at-pt-display-when-idle t)
-;(setq help-at-pt-timer-delay 0.1)
-;(help-at-pt-set-timer)
-;
-;(require 'company)
-;(require 'company-emacs-eclim)
-;(company-emacs-eclim-setup)
-;(global-company-mode t)
-;(setq company-emacs-eclim-ignore-case t)
-;
-;(define-key eclim-mode-map (kbd "C-c C-c") 'eclim-problems-correct)
-
-
-;;-------------------------------------------------------------
-(defun crontab-e ()
-  (interactive)
-  (with-editor-async-shell-command "crontab -e"))
-
 
 ;;-------------------------------------------------------------
 (require 'solaire-mode)
@@ -477,3 +421,11 @@ Version 2015-04-09"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:background nil)))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (magit zygospore yasnippet ws-butler volatile-highlights use-package undo-tree sublime-themes stickyfunc-enhance solaire-mode smartparens shift-number rainbow-identifiers rainbow-delimiters multi-term iedit ido-vertical-mode helm-swoop helm-projectile helm-gtags git-blamed git ggtags find-file-in-repository dtrt-indent company clean-aindent-mode anzu))))
