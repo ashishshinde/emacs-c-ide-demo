@@ -299,14 +299,14 @@ Version 2015-04-09"
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
-(global-set-key (kbd "M-)")           (quote move-forward-paren))
-(global-set-key (kbd "M-(")           (quote move-backward-paren))
+;; (global-set-key (kbd "M-)")           (quote move-forward-paren))
+;; (global-set-key (kbd "M-(")           (quote move-backward-paren))
 
-(global-set-key (kbd "M-]")           (quote move-forward-sqrParen))
-(global-set-key (kbd "M-[")           (quote move-backward-sqrParen))
+;; (global-set-key (kbd "M-]")           (quote move-forward-sqrParen))
+;; (global-set-key (kbd "M-[")           (quote move-backward-sqrParen))
 
-(global-set-key (kbd "M-}")           (quote move-forward-curlyParen))
-(global-set-key (kbd "M-{")           (quote move-backward-curlyParen))
+;; (global-set-key (kbd "M-}")           (quote move-forward-curlyParen))
+;; (global-set-key (kbd "M-{")           (quote move-backward-curlyParen))
 
 (global-set-key (kbd "C-M-/") 'my-expand-file-name-at-point)
 (defun my-expand-file-name-at-point ()
@@ -428,4 +428,4 @@ Version 2015-04-09"
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit zygospore yasnippet ws-butler volatile-highlights use-package undo-tree sublime-themes stickyfunc-enhance solaire-mode smartparens shift-number rainbow-identifiers rainbow-delimiters multi-term iedit ido-vertical-mode helm-swoop helm-projectile helm-gtags git-blamed git ggtags find-file-in-repository dtrt-indent company clean-aindent-mode anzu))))
+    (simpleclip kotlin-mode yaml-mode magit zygospore yasnippet ws-butler volatile-highlights use-package undo-tree sublime-themes stickyfunc-enhance solaire-mode smartparens shift-number rainbow-identifiers rainbow-delimiters multi-term iedit ido-vertical-mode helm-swoop helm-projectile helm-gtags git-blamed git ggtags find-file-in-repository dtrt-indent company clean-aindent-mode anzu))))
