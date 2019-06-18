@@ -168,6 +168,8 @@ Version 2015-04-09"
 (global-set-key (kbd "C-c C-<down>")  'windmove-down)
 ;; enable clipboard in emacs
 (setq x-select-enable-clipboard t)
+;; unicode encoding in terminal mode
+(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
 ;; transparency
 (defun transparency (value)
