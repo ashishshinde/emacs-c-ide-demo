@@ -371,10 +371,10 @@ Version 2015-04-09"
 
 ;;-------------------------------------------------------------
 ;; riti formatter
-(require 'riti)
-(setq-default riti-on-save nil)
-(setq-default riti-cfg-file "/home/ashish/.riti.xml")
-(global-set-key [C-M-tab] 'riti)
+;;(require 'riti)
+;;(setq-default riti-on-save nil)
+;;(setq-default riti-cfg-file "/home/ashish/.riti.xml")
+;;(global-set-key [C-M-tab] 'riti)
 
 ;;-------------------------------------------------------------
 ;; shift numbers

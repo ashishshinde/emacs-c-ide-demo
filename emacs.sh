@@ -15,5 +15,5 @@ if [ -z "$INSIDE_EMACS" ]; then
 		TERM=xterm-256color emacsclient -nw -s "$FILE" -e "(progn (find-file \"$@\") (transparency 92))"
 	fi
 else
-	emacsclient -n -s /tmp/emacs1000/server "$@"
+	emacsclient -n -s "/tmp/emacs$UID/server" "$@"
 fi

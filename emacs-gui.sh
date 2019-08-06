@@ -15,5 +15,5 @@ if [ -z "$INSIDE_EMACS" ]; then
 		emacsclient -c -s "$FILE" -e "(progn (find-file \"$@\") (transparency 92))"
 	fi
 else
-	emacsclient -n -s /tmp/emacs1000/server "$@"
+	emacsclient -n -s "/tmp/emacs$UID/server" "$@"
 fi
