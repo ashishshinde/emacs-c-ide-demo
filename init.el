@@ -372,10 +372,10 @@ Version 2015-04-09"
 
 ;;-------------------------------------------------------------
 ;; riti formatter
-;;(require 'riti)
-;;(setq-default riti-on-save nil)
-;;(setq-default riti-cfg-file "/home/ashish/.riti.xml")
-;;(global-set-key [C-M-tab] 'riti)
+(require 'riti)
+(setq-default riti-on-save nil)
+(setq-default riti-cfg-file "/home/ashish/.riti.xml")
+(global-set-key [C-M-tab] 'riti)
 
 ;;-------------------------------------------------------------
 ;; shift numbers
@@ -460,7 +460,21 @@ Version 2015-04-09"
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
 (add-to-list 'load-path "$GOPATH/src/github.com/dougm/goflymake")
-(require 'go-flymake')
+;(require 'go-flymake)
+
+;;-------------------------------------------------------------
+;; python
+(elpy-enable)
+
+;; Enable Flycheck
+(when (require 'flycheck nil t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
+
+;; Enable autopep8
+(require 'py-autopep8)
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+
 
 ;;-------------------------------------------------------------
 (require 'solaire-mode)
