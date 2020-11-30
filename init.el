@@ -66,6 +66,7 @@
 (require 'sublime-themes)
 ;;(load-theme 'clues t)
 (load-theme 'modus-vivendi t)
+
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -154,6 +155,9 @@ Version 2015-04-09"
 (require 'ido)
 ;; (require 'ido-ubiquitous)
 ;; (require 'ido-vertical-mode)
+(setq helm-M-x-fuzzy-match t)
+(setq helm-completion-style 'emacs)
+(setq completion-styles '(helm-flex))
 (global-set-key (kbd "C-x f") 'find-file-in-repository)
 ;; (ido-ubiquitous-mode 1)
 ;; (ido-vertical-mode)
@@ -177,8 +181,7 @@ Version 2015-04-09"
    "Sets the transparency of the frame window. 0=transparent/100=opaque"
    (interactive "nTransparency Value 0 - 100 opaque:")
    (set-frame-parameter (selected-frame) 'alpha value))
-(transparency 98)
-
+(transparency 100)
 
 ;;-------------------------------------------------------------
 ;; ggtags
@@ -409,11 +412,12 @@ Version 2015-04-09"
 
 (when window-system (set-exec-path-from-shell-PATH))
 
+(setq exec-path (append exec-path '("/home/ashish/go/bin")))
+
 ;; GOPATH
 (setenv "GOPATH" "/home/ashish/go")
 
 ;; Auto format on save
-(add-to-list 'exec-path "/home/ashish/go/bin")
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; godef bindings
@@ -510,10 +514,10 @@ Version 2015-04-09"
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "5d09b4ad5649fea40249dd937eaaa8f8a229db1cec9a1a0ef0de3ccf63523014" "2540689fd0bc5d74c4682764ff6c94057ba8061a98be5dd21116bf7bf301acfb" "2a7beed4f24b15f77160118320123d699282cbf196e0089f113245d4b729ba5d" "36ca8f60565af20ef4f30783aa16a26d96c02df7b4e54e9900a5138fb33808da" "9b35c097a5025d5da1c97dba45fed027e4fb92faecbd2f89c2a79d2d80975181" "2d835b43e2614762893dc40cbf220482d617d3d4e2c35f7100ca697f1a388a0e" "1a212b23eb9a9bedde5ca8d8568b1e6351f6d6f989dd9e9de7fba8621e8ef82d" "8f5b54bf6a36fe1c138219960dd324aad8ab1f62f543bed73ef5ad60956e36ae" "31f8d16d264e14e8e39c4f291e26cdd5516772a41660ef2ad895244c22024bd2" "f9cae16fd084c64bf0a9de797ef9caedc9ff4d463dd0288c30a3f89ecf36ca7e" "9efb2d10bfb38fe7cd4586afb3e644d082cbcdb7435f3d1e8dd9413cbe5e61fc" "2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" "dde8c620311ea241c0b490af8e6f570fdd3b941d7bc209e55cd87884eb733b0e" "bc836bf29eab22d7e5b4c142d201bcce351806b7c1f94955ccafab8ce5b20208" "379a804655efccc13a3d446468992bfdfc30ff27d19cfda6f62c7f9c9e7a8a7d" "c59ed2bceca3ba0c01a7689cb9067c9b7f11924aaad98ed4b0c1f0818e542a92" "3577ee091e1d318c49889574a31175970472f6f182a9789f1a3e9e4513641d86" "1623aa627fecd5877246f48199b8e2856647c99c6acdab506173f9bb8b0a41ac" "e1ef2d5b8091f4953fe17b4ca3dd143d476c106e221d92ded38614266cea3c8b" "3c2f28c6ba2ad7373ea4c43f28fcf2eed14818ec9f0659b1c97d4e89c99e091e" "7f791f743870983b9bb90c8285e1e0ba1bf1ea6e9c9a02c60335899ba20f3c94" "d71aabbbd692b54b6263bfe016607f93553ea214bc1435d17de98894a5c3a086" "79278310dd6cacf2d2f491063c4ab8b129fee2a498e4c25912ddaa6c3c5b621e" "1526aeed166165811eefd9a6f9176061ec3d121ba39500af2048073bea80911e" "76bfa9318742342233d8b0b42e824130b3a50dcc732866ff8e47366aed69de11" "fe94e2e42ccaa9714dd0f83a5aa1efeef819e22c5774115a9984293af609fce7" "de65dc21fefce202883a5071170962c73b4bf4b691156d0a28239765f71b23e5" "f11e219c9d043cbd5f4b2e01713c2c24a948a98bed48828dc670bd64ae771aa1" "a77ced882e25028e994d168a612c763a4feb8c4ab67c5ff48688654d0264370c" "1e9001d2f6ffb095eafd9514b4d5974b720b275143fbc89ea046495a99c940b0" "2642a1b7f53b9bb34c7f1e032d2098c852811ec2881eec2dc8cc07be004e45a0" "669e02142a56f63861288cc585bee81643ded48a19e36bfdf02b66d745bcc626" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "b3775ba758e7d31f3bb849e7c9e48ff60929a792961a2d536edec8f68c671ca5" default)))
+    ("5afcf29b3d73c0959c772321f98735ccb99cca2cf054279202f7568a67828c6c" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" "4bca89c1004e24981c840d3a32755bf859a6910c65b829d9441814000cf6c3d0" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "5d09b4ad5649fea40249dd937eaaa8f8a229db1cec9a1a0ef0de3ccf63523014" "2540689fd0bc5d74c4682764ff6c94057ba8061a98be5dd21116bf7bf301acfb" "2a7beed4f24b15f77160118320123d699282cbf196e0089f113245d4b729ba5d" "36ca8f60565af20ef4f30783aa16a26d96c02df7b4e54e9900a5138fb33808da" "9b35c097a5025d5da1c97dba45fed027e4fb92faecbd2f89c2a79d2d80975181" "2d835b43e2614762893dc40cbf220482d617d3d4e2c35f7100ca697f1a388a0e" "1a212b23eb9a9bedde5ca8d8568b1e6351f6d6f989dd9e9de7fba8621e8ef82d" "8f5b54bf6a36fe1c138219960dd324aad8ab1f62f543bed73ef5ad60956e36ae" "31f8d16d264e14e8e39c4f291e26cdd5516772a41660ef2ad895244c22024bd2" "f9cae16fd084c64bf0a9de797ef9caedc9ff4d463dd0288c30a3f89ecf36ca7e" "9efb2d10bfb38fe7cd4586afb3e644d082cbcdb7435f3d1e8dd9413cbe5e61fc" "2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" "dde8c620311ea241c0b490af8e6f570fdd3b941d7bc209e55cd87884eb733b0e" "bc836bf29eab22d7e5b4c142d201bcce351806b7c1f94955ccafab8ce5b20208" "379a804655efccc13a3d446468992bfdfc30ff27d19cfda6f62c7f9c9e7a8a7d" "c59ed2bceca3ba0c01a7689cb9067c9b7f11924aaad98ed4b0c1f0818e542a92" "3577ee091e1d318c49889574a31175970472f6f182a9789f1a3e9e4513641d86" "1623aa627fecd5877246f48199b8e2856647c99c6acdab506173f9bb8b0a41ac" "e1ef2d5b8091f4953fe17b4ca3dd143d476c106e221d92ded38614266cea3c8b" "3c2f28c6ba2ad7373ea4c43f28fcf2eed14818ec9f0659b1c97d4e89c99e091e" "7f791f743870983b9bb90c8285e1e0ba1bf1ea6e9c9a02c60335899ba20f3c94" "d71aabbbd692b54b6263bfe016607f93553ea214bc1435d17de98894a5c3a086" "79278310dd6cacf2d2f491063c4ab8b129fee2a498e4c25912ddaa6c3c5b621e" "1526aeed166165811eefd9a6f9176061ec3d121ba39500af2048073bea80911e" "76bfa9318742342233d8b0b42e824130b3a50dcc732866ff8e47366aed69de11" "fe94e2e42ccaa9714dd0f83a5aa1efeef819e22c5774115a9984293af609fce7" "de65dc21fefce202883a5071170962c73b4bf4b691156d0a28239765f71b23e5" "f11e219c9d043cbd5f4b2e01713c2c24a948a98bed48828dc670bd64ae771aa1" "a77ced882e25028e994d168a612c763a4feb8c4ab67c5ff48688654d0264370c" "1e9001d2f6ffb095eafd9514b4d5974b720b275143fbc89ea046495a99c940b0" "2642a1b7f53b9bb34c7f1e032d2098c852811ec2881eec2dc8cc07be004e45a0" "669e02142a56f63861288cc585bee81643ded48a19e36bfdf02b66d745bcc626" "3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" "b3775ba758e7d31f3bb849e7c9e48ff60929a792961a2d536edec8f68c671ca5" default)))
  '(package-selected-packages
    (quote
-    (modus-vivendi-theme solarized-theme golint ample-zen-theme ample-theme flatland-theme gruber-darker-theme almost-mono-themes vscdark-theme doom-themes backup-walker clues-theme arjen-grey-theme soothe-theme afternoon-theme cyberpunk-theme night-owl-theme atom-dark-theme atom-one-dark-theme go-mode markdownfmt markdown-toc markdown-mode+ window-jump rainbow-delimiters kotlin-mode yaml-mode magit zygospore yasnippet ws-butler volatile-highlights use-package undo-tree sublime-themes stickyfunc-enhance solaire-mode smartparens shift-number rainbow-identifiers multi-term iedit ido-vertical-mode helm-swoop helm-projectile helm-gtags git-blamed git ggtags find-file-in-repository dtrt-indent company clean-aindent-mode anzu)))
+    (spacemacs-theme magit-p4 ob-kotlin modus-vivendi-theme solarized-theme golint ample-zen-theme ample-theme flatland-theme gruber-darker-theme almost-mono-themes vscdark-theme doom-themes backup-walker clues-theme arjen-grey-theme soothe-theme afternoon-theme cyberpunk-theme night-owl-theme atom-dark-theme atom-one-dark-theme go-mode markdownfmt markdown-toc markdown-mode+ window-jump rainbow-delimiters kotlin-mode yaml-mode magit zygospore yasnippet ws-butler volatile-highlights use-package undo-tree sublime-themes stickyfunc-enhance solaire-mode smartparens shift-number rainbow-identifiers multi-term iedit ido-vertical-mode helm-swoop helm-projectile helm-gtags git-blamed git ggtags find-file-in-repository dtrt-indent company clean-aindent-mode anzu)))
  '(safe-local-variable-values
    (quote
     ((eval when
